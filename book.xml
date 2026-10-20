@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- book.xml 图书目录 -->
+<bookstore>
+    <book id="bk101">
+        <title>计算机网络</title>
+        <author>谢希仁</author>
+        <price>45.0</price>
+    </book>
+    <book id="bk102">
+        <title>数据结构</title>
+        <author>严蔚敏</author>
+        <price>39.8</price>
+    </book>
+    <book id="bk103">
+        <title>操作系统原理</title>
+        <author>汤小丹</author>
+        <price>49.5</price>
+    </book>
+    <book id="bk104">
+        <title>JavaScript高级程序设计</title>
+        <author>Nicholas C. Zakas</author>
+        <price>89.0</price>
+    </book>
+</bookstore>
