@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>JSON Lab - User Profiles</title>
+<style>
+    table {
+        border-collapse: collapse;
+        margin: 10px 0 30px 0;
+    }
+    table, th, td {
+        border: 1px solid #333;
+    }
+    th, td {
+        padding: 6px 12px;
+    }
+</style>
+</head>
+<body>
+<p><a href="index.html">返回首页</a></p>
+<h2>用户信息（来自 userProfiles.json）</h2>
+<table id="userTable">
+    <tr><th>姓名</th><th>邮箱</th><th>生日</th><th>地址</th><th>订阅</th></tr>
+</table>
+
+<script>
+// 读取 userProfiles.json
+fetch("userProfiles.json")
+    .then(function (res) {
+        return res.json();
+    })
+    .then(function (data) {
+        var str = "";
+        for (var i = 0; i < data.length; i++) {
+            var user = data[i];
+            var address = user.address.street + "，" + user.address.city + "，" + user.address.state + "，" + user.address.zipCode;
+            str += "<tr><td>" + user.firstName + " " + user.lastName + "</td><td>" + user.email + "</td><td>" + user.dateOfBirth + "</td><td>" + address + "</td><td>" + user.preferences.subscription + "</td></tr>";
+        }
+        document.getElementById("userTable").innerHTML += str;
+    });
+</script>
+</body>
+</html>
