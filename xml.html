@@ -25,11 +25,13 @@
 
 <script>
 // 读取 book.xml
-var xhr = new XMLHttpRequest();
-xhr.open("GET", "book.xml", true);
-xhr.onreadystatechange = function () {
-    if (xhr.readyState == 4 && xhr.status == 200) {
-        var xmlDoc = xhr.responseXML;
+fetch("book.xml")
+    .then(function (res) {
+        return res.text();
+    })
+    .then(function (xmlText) {
+        var parser = new DOMParser();
+        var xmlDoc = parser.parseFromString(xmlText, "text/xml");
         var books = xmlDoc.getElementsByTagName("book");
         var str = "";
         for (var i = 0; i < books.length; i++) {
@@ -40,9 +42,10 @@ xhr.onreadystatechange = function () {
             str += "<tr><td>" + id + "</td><td>" + title + "</td><td>" + author + "</td><td>" + price + "</td></tr>";
         }
         document.getElementById("bookTable").innerHTML += str;
-    }
-};
-xhr.send();
+    })
+    .catch(function (err) {
+        console.error("Fetch error: " + err.message);
+    });
 </script>
 </body>
 </html>
